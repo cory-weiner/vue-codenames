@@ -14,7 +14,7 @@
       <button v-on:click="showrules=!showrules">Rules</button>
     </div>
     
-    <app-board :gameboard="gameboard"></app-board>
+    <app-board :gameboard="gameboard" :showall="showall"></app-board>
     
 
   </div>

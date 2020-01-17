@@ -14,7 +14,7 @@ import { mapFields } from 'vuex-map-fields';
 
 export default {
   name: 'Board',
-  props: ['gameboard'],
+  props: ['gameboard','showall'],
   methods: {
     getTileColor(tile){
       if (tile.guessed || this.showall){
