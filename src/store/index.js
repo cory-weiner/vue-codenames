@@ -13,7 +13,7 @@ export default new Vuex.Store({
     boardSubscription: {},
     client: require('mqtt').connect('wss://test.mosquitto.org:8081', { clientId: 'client_' + Date.now().toString() }),
     players: [],
-    topic: 'codenames/',
+    topic: 'vue-codenames/',
     lobby_id: '',
     subscribe_qos: 0,
     publish_qos: 0,
