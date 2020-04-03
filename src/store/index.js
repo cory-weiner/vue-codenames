@@ -120,7 +120,8 @@ export default new Vuex.Store({
     resetGameboard(state){
       state.gameboard = {}
       state.players = []
-      state.chat= []
+      state.chat = []
+      state.clue = ''
       state.client.unsubscribe(Object.keys(state.client._resubscribeTopics))
     },
     publishGameBoard(state){
