@@ -122,12 +122,16 @@ export default {
 <style scoped>
 .noboard{
     font-size: 3em;
-    border: solid 1px #cccccc;
-    border-bottom: solid 4px #cccccc;
+    border: solid 4px rgba(117,14,67,1);
+    border-bottom: solid 10px rgba(117,14,67,1);
     border-radius: 10px;
     padding: 20px;
     cursor:pointer;
+    color:white;
+        background: linear-gradient(144deg, rgba(117,14,67,1) 0%, rgba(171,33,85,1) 60%, rgba(255,213,6,1) 100%);
+
 }
+
 .noboard_container{
     display: grid;
     justify-items: center;
@@ -199,6 +203,17 @@ hr{
 .chat_controls{
     text-align: center;
     margin-top:10px;
+}
+.chat_controls input{
+    margin:0px !important;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.chat_controls button{
+    color: white !important;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color:black;
 }
 h3{
     padding: 5px 10px;
