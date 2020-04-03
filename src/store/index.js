@@ -157,6 +157,7 @@ export default new Vuex.Store({
       state.client.subscribe(state.topic + state.lobby_id+'/players', { qos: parseInt(state.subscribe_qos) })
       state.client.subscribe(state.topic + state.lobby_id+'/players/+', { qos: parseInt(state.subscribe_qos) })
       state.client.subscribe(state.topic + state.lobby_id+'/clue', { qos: parseInt(state.subscribe_qos) })
+      state.client.subscribe(state.topic + state.lobby_id+'/chat', { qos: parseInt(state.subscribe_qos) })
       // state.client.publish(state.topic + state.lobby_id+'/players', JSON.stringify(state.username), { qos: parseInt(state.publish_qos), retain: state.retain })
       state.client.publish(state.topic + state.lobby_id+'/players/'+state.username, JSON.stringify(state.username), { qos: parseInt(state.publish_qos), retain: state.retain })
 
