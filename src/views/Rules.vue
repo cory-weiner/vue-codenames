@@ -1,7 +1,7 @@
 <template>
     <div class="rules_container">
         <h1>What is Vue-CodeNames?</h1>
-        <p>Vue codenames is an open source browser based Vue.js implementation of the popular card game Codenames. Users are connected to a game lobby in realtime via MQTT web protocol into a game lobby. The full rules of the game are available below.</p>
+        <p>Vue codenames is an open source browser based Vue.js implementation of the popular card game Codenames. Users are connected to a game lobby in realtime via MQTT web protocol. The full rules of the game are available below.</p>
         <h1>Game Rules</h1>
         <p>Vue-Codenames is a party game played with 2 teams of at least 2 or more people each.</p>
         <h2>Basics</h2>

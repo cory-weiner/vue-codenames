@@ -20,6 +20,8 @@
         </div> -->
 
                     <app-players></app-players>
+
+                    {{alert}}
                     <h3>Chat:</h3>
             <div class="toolbar_section chat_container">
                 <div class="chatmessage" v-for="(msg,index) in chat" v-bind:key="index"><b>{{msg.user}}</b> : {{msg.message}}</div>
@@ -96,7 +98,8 @@ export default {
         'username',
         'messages',
         'chat',
-        'clue'
+        'clue',
+        'alert'
       ]),
       ...mapGetters(['playerList','isSpyMaster']),
   },

@@ -20,6 +20,7 @@ export default new Vuex.Store({
     retain: true,
     active_team: '',
     messages: [],
+    alert: '', 
     chat: [],
     username: '',
     colors: { 'RED': '#DC143C', 'BLUE': '#6495ED', 'NUETRAL': '#f7dca7', 'ASSASSIN': '#333333' },
@@ -122,6 +123,7 @@ export default new Vuex.Store({
       state.players = []
       state.chat = []
       state.clue = ''
+      state.alert = ''
       state.client.unsubscribe(Object.keys(state.client._resubscribeTopics))
     },
     publishGameBoard(state){
