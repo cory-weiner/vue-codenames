@@ -26,10 +26,12 @@
             </div>
             <div class="chat_controls"><input v-model="chatmsg" placeholder="send chat..."><button v-on:click="sendchat">send</button></div>
       </div>
-        <div class="board_container">
+
+        <div v-if="gameboard" class="board_container">
             <template v-if="clue"><div class="board_toolbar">{{clue.user}}'s Clue:<b>{{clue.clue}}</b></div></template>
             <template v-if="!clue"><div class="board_toolbar"><b>welcome to vue-codenames!</b></div></template>
-            <app-board :gameboard="gameboard"></app-board>
+            <app-board v-if="gameboard.tiles" :gameboard="gameboard"></app-board>
+            <div v-if="!gameboard.tiles" class="noboard_container"><button class="noboard" v-on:click="generateBoard">Create a board!</button></div>
         </div>
       
       <!-- Players:
@@ -108,7 +110,19 @@ export default {
 
 
 <style scoped>
-
+.noboard{
+    font-size: 3em;
+    border: solid 1px #cccccc;
+    border-bottom: solid 4px #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    cursor:pointer;
+}
+.noboard_container{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
 h1{
     font-size:1.2em;
     padding: 10px;
