@@ -3,6 +3,10 @@
     <div class="splash">
       <div class="logo">Vue CodeNames</div>
       <div class="subline">A Top Secret Word Game</div>
+      <div class="header_links">
+        <a href="https://github.com/cory-weiner/vue-codenames">Source Code</a>
+        <a href="https://weiner.app">By Cory Weiner</a>
+      </div>
     </div>
     <div class="lower_container">
       <AppCreateOrJoin></AppCreateOrJoin>
@@ -80,5 +84,18 @@ background: linear-gradient(144deg, rgba(117,14,67,1) 0%, rgba(171,33,85,1) 37%,
 padding: 20px;
 }
 
-
+.header_links a{
+  color:white;
+  border: solid 1px white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.header_links a:hover{
+  background-color:white;
+  color: rgba(171,33,85,1);
+}
 </style>

@@ -72,7 +72,8 @@ padding-top:10px;
      text-align:center;
      border-radius: 2px;
      border-bottom: solid 2px #ffd506;
-     border-top: solid 1px #cccccc;
+     
+     padding: 10px;
  }
   .two_col>div{
       
@@ -91,6 +92,7 @@ padding-top:10px;
         cursor:pointer;
         margin-right:10px;
         margin-bottom: 10px;
+        border-radius:4px;
     }
     .joinbutton:hover{
         background-color:black;
