@@ -149,10 +149,11 @@ h1{
     background-color:red;
 
     background: rgb(117,14,67);
-    background: linear-gradient(144deg, rgba(117,14,67,1) 0%, rgba(171,33,85,1) 37%, rgba(255,213,6,1) 100%);
+    background: linear-gradient(144deg, rgba(117,14,67,1) 0%, rgba(171,33,85,1) 60%, rgba(255,213,6,1) 100%);
     color:white;
     column-gap:20px;
     align-items: center;
+    border-right: solid 5px black;
 }
 .toolbar_section{
     padding: 0px 10px;
