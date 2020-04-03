@@ -7,7 +7,7 @@
           <input class="joinforminput" v-model="lobby_id" placeholder="Enter Lobby ID"/>
           <!-- <button class="joinbutton" v-on:click="createGame">Create Lobby</button>
             <button class="joinbutton" v-on:>Join Lobby</button> -->
-            <router-link tag="button" class="joinbutton"  to="/play2">Create/Join Lobby</router-link>
+            <router-link tag="button" class="joinbutton"  to="/play">Create/Join Lobby</router-link>
       </div>
       </div>
   </div>

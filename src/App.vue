@@ -78,4 +78,18 @@ html, body, #app {
 font-family: Rockwell,"Courier Bold",Courier,Georgia,Times,"Times New Roman",serif;
 font-size:2em;
 }
+
+input{
+    padding: 5px 10px;
+    margin-right: 10px;
+    border:none;
+    border-radius: 2px;
+}
+button{
+    border:none;
+    padding: 5px 10px;
+    background-color:white;
+    color:black;
+    border-radius: 2px;
+}
 </style>

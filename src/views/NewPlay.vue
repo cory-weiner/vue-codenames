@@ -106,6 +106,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
 
 h1{
@@ -180,4 +181,6 @@ h3{
     font-weight:bold;
     border-top: solid 2px rgb(117,14,67);
 }
+
+
 </style>
