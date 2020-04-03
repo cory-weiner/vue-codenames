@@ -78,6 +78,7 @@ export default {
     window.addEventListener("beforeunload", this.unsubscribePlayer);
   },
   beforeDestroy(){
+      this.resetGameboard();
       this.unsubscribePlayer();
   },
   data(){
@@ -100,7 +101,7 @@ export default {
       ...mapGetters(['playerList','isSpyMaster']),
   },
   methods: {
-    ...mapMutations(['subscribeToLobby','generateBoard','sendChat','unsubscribePlayer']),
+    ...mapMutations(['subscribeToLobby','generateBoard','sendChat','unsubscribePlayer','resetGameboard']),
     sendchat(){
         this.sendChat(this.chatmsg)
         this.chatmsg = ''

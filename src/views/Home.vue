@@ -9,6 +9,7 @@
       </div>
     </div>
     <div class="lower_container">
+      <pre>{{client}}</pre>
       <AppCreateOrJoin></AppCreateOrJoin>
       <div class="rules_container"><app-rules></app-rules></div>
     </div>
@@ -19,6 +20,7 @@
 <script>
 import Rules from './Rules.vue';
 import CreateOrJoin from './CreateOrJoin.vue';
+import { mapFields } from 'vuex-map-fields';
 export default {
   name: 'home',
   created(){
@@ -29,6 +31,7 @@ export default {
     }
   },
   computed: {
+    ...mapFields(['client'])
   },
   methods: {
   },

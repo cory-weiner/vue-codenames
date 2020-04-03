@@ -117,6 +117,12 @@ export default new Vuex.Store({
       }
 
     },
+    resetGameboard(state){
+      state.gameboard = {}
+      state.players = []
+      state.chat= []
+      state.client.unsubscribe(Object.keys(state.client._resubscribeTopics))
+    },
     publishGameBoard(state){
       state.client.publish(state.topic + state.lobby_id+'/board', JSON.stringify(state.gameboard), { qos: parseInt(state.publish_qos), retain: state.retain,  messageExpiryInterval: 1080 })
     },
@@ -138,7 +144,6 @@ export default new Vuex.Store({
         if (!message && state.players.includes(topic)){
           state.players = state.players.filter((p) =>{ return p !== topic}) 
         }
-
       }
       if (payload.topic.includes("board")){
         state.gameboard = JSON.parse(payload.message)
