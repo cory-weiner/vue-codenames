@@ -6,6 +6,7 @@ import Join from '../views/Join.vue'
 import Test from '../views/Test.vue'
 import Rules from '../views/Rules.vue'
 import Encryptor from '../views/Encryptor.vue'
+import NewPlay from '../views/NewPlay.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,9 @@ const routes = [
     path: '/play/', component: Play
   },
   {
+    path: '/play2/', component: NewPlay, props: {createlobby: true}
+  },
+  {
     path: '/',
     name: 'home',
     component: Home
@@ -40,8 +44,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes,
-  mode: 'history'
+  routes
 })
 
 export default router

@@ -2,13 +2,13 @@
   <div class="home">
     <div class="modal_wrapper" v-if="showrules" v-on:click="showrules=!showrules">
       <div class="modal_inner" v-on:click.stop="true">
-        
         <app-rules></app-rules>
       </div>
     </div>
     <div class="toolbar">
-    <router-link to="/" tag="span" class="logo">MineCypher</router-link> |
-      <label>Your Lobby:</label><input v-model="lobby_id">
+    <router-link to="/" tag="span" class="logo">Vue-Codenames</router-link> |
+      <label>Your Lobby:</label>{{lobby_id}}
+       as {{username}}
       <button v-on:click="generateBoard">New Board</button>
       <button v-on:click="showall=!showall">Toggle Answers</button>
       <button v-on:click="showrules=!showrules">Rules</button>
@@ -29,6 +29,7 @@ import Board from './Board/Board.vue';
 export default {
   name: 'home',
   created(){
+    this.addPlayer();
   },
   data(){
     return {
@@ -41,12 +42,13 @@ export default {
         'wordlist',
         'gameboard',
         'colors',
-        'lobby_id'
+        'lobby_id',
+        'username'
       ]),
       ...mapGetters(['scoreboard']),
   },
   methods: {
-    ...mapMutations(['generateBoard','getTileColor','publishGameBoard'])
+    ...mapMutations(['generateBoard','getTileColor','publishGameBoard','addPlayer'])
   },
   components: {
         AppRules: Rules,

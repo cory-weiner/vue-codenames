@@ -1,7 +1,9 @@
 <template>
-    <div class="tile_grid" :style="{ backgroundImage: 'url(' + require('../../assets/dirt.jpg') + ')' }">
-      <div class="tile" v-for="(tile,index) in gameboard.tiles" v-bind:key="index" :style={backgroundColor:getTileColor(tile)} v-on:click="guess(index)">
-      <span class="word">{{tile.word}}</span>
+    <div class="tile_grid">
+      <div class="tile" v-for="(tile,index) in gameboard.tiles" v-bind:key="index" :style={backgroundColor:getTileColor(tile)} v-on:click="onGuess(index)">
+
+      <span v-if="isSpyMaster" :style={color:alwaysGetTileColor(tile)} class="word">{{tile.word}}</span>
+      <span v-if="!isSpyMaster" class="word">{{tile.word}}</span>
       </div>
     </div>
 </template>
@@ -9,7 +11,7 @@
 <script>
 
 
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
 
 export default {
@@ -21,15 +23,25 @@ export default {
         return this.colors[tile.value]
       }
       else{
-        return 'rgba(0,0,0,0.3)'
+        return 'rgba(0,0,0,0.1)'
       }
     },
-    ...mapMutations(['guess'])
+    alwaysGetTileColor(tile){
+        return this.colors[tile.value]
+      }
+    ,
+    ...mapMutations(['guess']),
+    onGuess(index){
+      if(this.isSpyMaster){
+        this.guess(index)
+      }
+    }
   },
   computed: {
     ...mapFields([
-        'colors',
+        'colors'
       ]),
+    ...mapGetters(['isSpyMaster'])
   }
 }
 </script>
