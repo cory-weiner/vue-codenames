@@ -1,7 +1,7 @@
 <template>
   <div class="home2">
     <div class="splash">
-      <div class="logo">Vue-CodeNames</div>
+      <div class="logo">Vue CodeNames</div>
       <div class="subline">A Top Secret Word Game</div>
     </div>
     <div class="lower_container">
@@ -40,6 +40,7 @@ export default {
 .logo{
   font-weight:bold;
   font-size:2.5em;
+  text-align: center;
 }
 .buttons{
   text-align:center;
@@ -78,4 +79,6 @@ background: rgb(117,14,67);
 background: linear-gradient(144deg, rgba(117,14,67,1) 0%, rgba(171,33,85,1) 37%, rgba(255,213,6,1) 100%);
 padding: 20px;
 }
+
+
 </style>

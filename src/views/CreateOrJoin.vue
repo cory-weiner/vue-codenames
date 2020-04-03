@@ -1,14 +1,14 @@
 <template>
   <div class="create_or_join">
       <div class="two_col">
-      <div>
+
           <h2>Create Or Join Lobby</h2>
           <input class="joinforminput" v-model="username" placeholder="Enter your name"/>
           <input class="joinforminput" v-model="lobby_id" placeholder="Enter Lobby ID"/>
           <!-- <button class="joinbutton" v-on:click="createGame">Create Lobby</button>
             <button class="joinbutton" v-on:>Join Lobby</button> -->
             <router-link tag="button" class="joinbutton"  to="/play">Create/Join Lobby</router-link>
-      </div>
+
       </div>
   </div>
 </template>
@@ -58,6 +58,7 @@ export default {
      font-size:1em;
      box-sizing: border-box;
      color:black;
+     margin-bottom: 10px;
  }
  .two_col h2{
 margin: 0px;
@@ -65,6 +66,7 @@ font-size:1.2em;
 margin-bottom:5px;
 text-align: center;
 margin-bottom:20px;
+padding-top:10px;
  }
  .two_col{
      text-align:center;
@@ -88,6 +90,7 @@ margin-bottom:20px;
         display: inline-block;
         cursor:pointer;
         margin-right:10px;
+        margin-bottom: 10px;
     }
     .joinbutton:hover{
         background-color:black;

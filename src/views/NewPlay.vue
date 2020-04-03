@@ -19,12 +19,12 @@
             {{gameboard.spymasters}}
         </div> -->
 
-            <app-players></app-players>
-            <h3>Chat:</h3>
-    <div class="toolbar_section chat_container">
-        <div class="chatmessage" v-for="(msg,index) in chat" v-bind:key="index"><b>{{msg.user}}</b> : {{msg.message}}</div>
-    </div>
-    <div class="chat_controls"><input v-model="chatmsg" placeholder="send chat..."><button v-on:click="sendchat">send</button></div>
+                    <app-players></app-players>
+                    <h3>Chat:</h3>
+            <div class="toolbar_section chat_container">
+                <div class="chatmessage" v-for="(msg,index) in chat" v-bind:key="index"><b>{{msg.user}}</b> : {{msg.message}}</div>
+            </div>
+            <div class="chat_controls"><input v-model="chatmsg" placeholder="send chat..."><button v-on:click="sendchat">send</button></div>
       </div>
         <div class="board_container">
             <template v-if="clue"><div class="board_toolbar">{{clue.user}}'s Clue:<b>{{clue.clue}}</b></div></template>
@@ -182,5 +182,23 @@ h3{
     border-top: solid 2px rgb(117,14,67);
 }
 
+
+@media only screen and (max-width: 900px) {
+ .home{
+    display: flex;
+}
+.board_container{
+    width:100%;
+    grid-template-rows: 40px 1fr;
+    box-sizing: border-box;
+}
+.board_container>*{
+    box-sizing: border-box;
+}
+.toolbar{
+    display: none;
+}
+
+}
 
 </style>
