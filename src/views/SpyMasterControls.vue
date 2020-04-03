@@ -5,7 +5,7 @@
     <div class="rules_container"> 
         <div class="playerstatus"><span class="spymaster_symbol">🕵</span> You are the spymaster.</div>
         <button class="newboard_button" v-on:click="generateBoard">New Board</button>
-        <div id="clue_controller"><input v-model="clue"><button v-on:click="onGiveClue">Give Clue</button></div>
+       <form> <div id="clue_controller"><input v-model="clue"><button v-on:click="onGiveClue">Give Clue</button></div></form>
     </div>
 </template>
 
@@ -27,7 +27,9 @@ export default {
     ...mapMutations(['generateBoard','sendClue']),
     onGiveClue(){
         this.sendClue(this.clue)
+        this.clue = ''
     }
+    
   },
   components: {
 

@@ -118,7 +118,10 @@ export default new Vuex.Store({
 
     },
     publishGameBoard(state){
-      state.client.publish(state.topic + state.lobby_id+'/board', JSON.stringify(state.gameboard), { qos: parseInt(state.publish_qos), retain: state.retain })
+      state.client.publish(state.topic + state.lobby_id+'/board', JSON.stringify(state.gameboard), { qos: parseInt(state.publish_qos), retain: state.retain,  messageExpiryInterval: 1080 })
+    },
+    unsubscribePlayer(state){
+      state.client.publish(state.topic + state.lobby_id+'/players/'+state.username, JSON.stringify(''), { qos: parseInt(state.publish_qos), retain: state.retain, messageExpiryInterval: 1080 })
     },
     // WHEN MQTT message is recieved.
     messageRecieved(state, payload) {
@@ -127,10 +130,21 @@ export default new Vuex.Store({
       //   state.players.push(JSON.parse(payload.message))
       // }
       if (payload.topic.includes("players/")){
-        state.players.push(JSON.parse(payload.message))
+        const topic = payload.topic.substr(payload.topic.indexOf('players/')+8)
+        const message = JSON.parse(payload.message)
+        if(message && !state.players.includes(message)){
+          state.players.push(message)
+        }
+        if (!message && state.players.includes(topic)){
+          state.players = state.players.filter((p) =>{ return p !== topic}) 
+        }
+
       }
       if (payload.topic.includes("board")){
         state.gameboard = JSON.parse(payload.message)
+        if(state.gameboard.spymasters.length===0){
+          state.gameboard.spymasters.push(state.username)
+        }
       }
       if (payload.topic.includes("chat")){
         state.chat.push(JSON.parse(payload.message))
@@ -138,17 +152,12 @@ export default new Vuex.Store({
       if (payload.topic.includes("clue")){
         state.clue = JSON.parse(payload.message)
       }
-      // alert(payload.topic)
-      // alert(payload.message)
-
-      // payload.message = JSON.parse(payload.message)
-      // state.boardSubscription = payload
     },
     sendChat(state, message){
-      state.client.publish(state.topic + state.lobby_id+'/chat', JSON.stringify({user:state.username, message}), { qos: parseInt(state.publish_qos), retain: state.retain })
+      state.client.publish(state.topic + state.lobby_id+'/chat', JSON.stringify({user:state.username, message}), { qos: parseInt(state.publish_qos), retain: state.retain, messageExpiryInterval: 1080 })
     },
     sendClue(state, clue){
-      state.client.publish(state.topic + state.lobby_id+'/clue', JSON.stringify({user: state.username, clue}), { qos: parseInt(state.publish_qos) })
+      state.client.publish(state.topic + state.lobby_id+'/clue', JSON.stringify({user: state.username, clue}), { qos: parseInt(state.publish_qos),  messageExpiryInterval: 1080 })
     },
     // Called on first load of lobby.
     subscribeToLobby(state){
@@ -159,8 +168,7 @@ export default new Vuex.Store({
       state.client.subscribe(state.topic + state.lobby_id+'/clue', { qos: parseInt(state.subscribe_qos) })
       state.client.subscribe(state.topic + state.lobby_id+'/chat', { qos: parseInt(state.subscribe_qos) })
       // state.client.publish(state.topic + state.lobby_id+'/players', JSON.stringify(state.username), { qos: parseInt(state.publish_qos), retain: state.retain })
-      state.client.publish(state.topic + state.lobby_id+'/players/'+state.username, JSON.stringify(state.username), { qos: parseInt(state.publish_qos), retain: state.retain })
-
+      state.client.publish(state.topic + state.lobby_id+'/players/'+state.username, JSON.stringify(state.username), { qos: parseInt(state.publish_qos), retain: state.retain, messageExpiryInterval: 1080 })
     }
   },
   actions: {

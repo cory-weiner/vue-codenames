@@ -2,7 +2,7 @@
   <div class="home">
       
       <div class="toolbar">
-          <h1>vue-codenames</h1>
+          <router-link tag="h1" to="/">vue-codenames</router-link>
         <div class="toolbar_section">
             <b>Hello, {{username}}</b>
             <p class="lobbyname">Lobby: {{lobby_id}}</p>
@@ -24,7 +24,7 @@
             <div class="toolbar_section chat_container">
                 <div class="chatmessage" v-for="(msg,index) in chat" v-bind:key="index"><b>{{msg.user}}</b> : {{msg.message}}</div>
             </div>
-            <div class="chat_controls"><input v-model="chatmsg" placeholder="send chat..."><button v-on:click="sendchat">send</button></div>
+            <form><div class="chat_controls"><input v-model="chatmsg" placeholder="send chat..."><button v-on:click="sendchat">send</button></div></form>
       </div>
 
         <div v-if="gameboard" class="board_container">
@@ -72,7 +72,13 @@ export default {
     else{
         alert('Missing lobby ID or USERNAME.')
         this.$router.push({ path: '/' })
-    }   
+    }
+    
+    
+    window.addEventListener("beforeunload", this.unsubscribePlayer);
+  },
+  beforeDestroy(){
+      this.unsubscribePlayer();
   },
   data(){
     return {
@@ -94,7 +100,7 @@ export default {
       ...mapGetters(['playerList','isSpyMaster']),
   },
   methods: {
-    ...mapMutations(['subscribeToLobby','generateBoard','sendChat']),
+    ...mapMutations(['subscribeToLobby','generateBoard','sendChat','unsubscribePlayer']),
     sendchat(){
         this.sendChat(this.chatmsg)
         this.chatmsg = ''
