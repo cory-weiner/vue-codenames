@@ -136,6 +136,7 @@ h1{
     margin: 0px;
     background-color: rgba(0,0,0,0.5);
     margin-bottom: 10px;
+    cursor:pointer;
 }
 .home{
     height: 100%;
