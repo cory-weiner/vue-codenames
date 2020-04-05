@@ -23,7 +23,7 @@
 
                     {{alert}}
                     <h3>Chat:</h3>
-            <div class="toolbar_section chat_container">
+            <div class="toolbar_section chat_container" id="chat_container_box">
                 <div class="chatmessage" v-for="(msg,index) in chat" v-bind:key="index"><b>{{msg.user}}</b> : {{msg.message}}</div>
             </div>
             <form><div class="chat_controls"><input v-model="chatmsg" placeholder="send chat..."><button v-on:click="sendchat">send</button></div></form>
@@ -83,6 +83,10 @@ export default {
       this.resetGameboard();
       this.unsubscribePlayer();
   },
+    updated: function () {
+    var objDiv = document.getElementById("chat_container_box");
+    objDiv.scrollTop = objDiv.scrollHeight;
+    },
   data(){
     return {
       showall: false,
