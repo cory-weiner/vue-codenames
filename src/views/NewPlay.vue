@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-      
       <div class="toolbar">
           <router-link tag="h1" to="/">vue-codenames</router-link>
         <div class="toolbar_section">
@@ -9,6 +8,15 @@
         </div>
 
         <app-spy-controls v-if="isSpyMaster"></app-spy-controls>
+        <div v-if="startteam">
+            <div class='start_team_name'>{{startteam}} goes first.</div>
+            <div v-for="(value,key) in scoreboard" v-bind:key="key">
+            <div v-if="value.show" class="team_score">
+            <span>{{key}}</span> : {{value.guessed}}/{{value.tiles}}
+            </div>
+    
+            </div>
+        </div>
         
         <!-- <div class="toolbar_section" v-if="isSpyMaster">
             <button class="newboard_button" v-on:click="generateBoard">New Board</button>
@@ -57,7 +65,7 @@
 
 <script>
 import { mapFields } from 'vuex-map-fields';
-import { mapMutations, mapGetters } from 'vuex';
+import { mapMutations, mapGetters, mapState } from 'vuex';
 // import Rules from './Rules.vue';
 import Board from './Board/Board.vue';
 import Players from './Players.vue';
@@ -106,6 +114,25 @@ export default {
         'alert'
       ]),
       ...mapGetters(['playerList','isSpyMaster']),
+      ...mapState(['startteam']),
+      scoreboard(){
+          if (typeof this.gameboard.tiles == 'undefined'){
+              return undefined
+          }
+          var scores = {
+              'RED': {show: true, tiles:0, guessed:0},
+              'BLUE': {show: true, tiles:0, guessed:0},
+              'NUETRAL': {show: false, tiles:0, guessed:0},
+              'ASSASSIN': {show: false, tiles:0, guessed:0}
+          }
+          this.gameboard.tiles.forEach(t=>{
+              scores[t.value].tiles += 1
+              if (t.guessed){
+                  scores[t.value].guessed +=1
+              }
+          })
+          return scores
+      },
   },
   methods: {
     ...mapMutations(['subscribeToLobby','generateBoard','sendChat','unsubscribePlayer','resetGameboard']),
@@ -231,6 +258,7 @@ h3{
 @media only screen and (max-width: 900px) {
  .home{
     display: flex;
+    position:relative;
 }
 .board_container{
     width:100%;
@@ -245,5 +273,20 @@ h3{
 }
 
 }
-
+.start_team_name{
+    text-align:center;
+     background: rgba(0, 0, 0, 0.5);
+     margin: 5px;
+     border-radius: 4px;
+     padding: 3px;
+     font-weight:bold;
+}
+.team_score{
+ text-align:center;
+}
+.team_score span{
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px;
+}
 </style>
